@@ -10,7 +10,7 @@ class Robot:
         if pilihan_robot == 2 or pilihan_musuh == 2:
             pass
         else:
-            musuh.darah += self.serangan
+            musuh.darah -= self.serangan
             if musuh.darah <= 0:
                 print(f'{musuh.nama} mati')
 
