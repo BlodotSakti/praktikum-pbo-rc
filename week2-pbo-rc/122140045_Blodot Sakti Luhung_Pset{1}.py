@@ -36,11 +36,11 @@ class Anak(Ayah, Ibu):
       
 
 print('Contoh Alel = AA, AO, AB, BB, BO, OO')
-golongan_darah_ayah = input("Masukkan alel Ayah: ").upper()
-golongan_darah_ibu = input("Masukkan alel Ibu: ").upper()
+goldar_ayah = input("Masukkan alel Ayah: ").upper()
+goldar_ibu = input("Masukkan alel Ibu: ").upper()
 
-ayah = Ayah(golongan_darah_ayah)
-ibu = Ibu(golongan_darah_ibu)
+ayah = Ayah(goldar_ayah)
+ibu = Ibu(goldar_ibu)
 
 anak = Anak(ayah, ibu)
 anak.nyari_goldar_anak()
