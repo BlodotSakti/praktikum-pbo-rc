@@ -21,7 +21,7 @@ class Minesweeper:
             self.winner = False
             print('Kamu kalah karena kena bomb HAHAHA')
 
-        self.matrik[baris][kolom] = 'X'
+        self.matrik[baris][kolom] = 'O'
         if self.cek():
             self.winner = True
             print('Alhamdulillah anda memenangkan game')
