@@ -7,7 +7,6 @@ class Login:
         self.boxlogin.title('Login')
         self.boxlogin.geometry('300x200')
 
-
         self.username = tk.StringVar()
         self.password = tk.StringVar()
 
@@ -16,8 +15,6 @@ class Login:
 
         tk.Label(self.boxlogin, text = 'Password:').pack()
         tk.Entry(self.boxlogin, textvariable = self.password, show='*').pack()
-
-        
 
         tk.Button(self.boxlogin, text = 'Login', command = self.untuk_cek).pack()
         tk.Button(self.boxlogin, text = 'Register', command = self.buka_register).pack()
@@ -31,19 +28,24 @@ class Login:
             messagebox.showerror('Error', 'Salahh Cuyy Usernamenya atau PWnya')
 
     def buka_register(self):
-        self.jendela_register = Register()
+        self.boxlogin.withdraw()
+        self.jendela_register = Register(self.boxlogin, self.users)
+        self.jendela_register.jendela.protocol("WM_DELETE_WINDOW", lambda: self.tutup_register())
         self.jendela_register.mainloop()
- 
+
+    def tutup_register(self):
+        self.boxlogin.deiconify()
+
     def run(self):
         self.boxlogin.mainloop()
 
-
 class Register:
-    def __init__(self):
+    def __init__(self,master, users):
         self.jendela = tk.Toplevel()
         self.jendela.title('Register')
         self.jendela.geometry('300x300')
 
+        self.users = users
         self.username_register = tk.StringVar()
         self.password_register = tk.StringVar()
         self.cek_password = tk.StringVar()
@@ -58,26 +60,21 @@ class Register:
         tk.Entry(self.jendela, textvariable = self.cek_password).pack()
 
         tk.Button(self.jendela, text = 'Register', command = self.tombol_register).pack()
-        
-
-
-        self.users = {'Hallad': 'akuGanteng', 'Kaylaat': 'AkuJago'}
 
     def tombol_register(self):
         if self.password_register.get() == self.cek_password.get():
             if not self.ada_username(self.username_register.get()):
                 self.users[self.username_register.get()] = self.password_register.get()
                 messagebox.showinfo('Registrasi Berhasil', 'Anda berhasil registrasi akun')
-                
+
             else:
                 messagebox.showerror('Register Gagal', 'Username anda sudah digunakan')
         else:
             messagebox.showerror('Error', 'Tidak Sesuai')
-            
+
     def ada_username(self, username):
         return username in self.users
-            
+
 
 login = Login()
 login.run()
-  
